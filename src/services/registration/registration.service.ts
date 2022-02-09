@@ -4,13 +4,14 @@ import {
   OnApplicationBootstrap,
 } from '@nestjs/common';
 import { map } from 'rxjs/operators';
+import { ConfigService } from '@nestjs/config';
 
 const REGISTRATION_URL =
   'https://service-directory-proxy-xzww6y6oeq-uc.a.run.app/v1/connector';
 
-const CONNECTOR_URL = 'http://34.150.191.191';
-const CONNECTOR_IP = '34.150.191.191';
-const CONNECTOR_PORT = '3000';
+// const CONNECTOR_URL = 'http://34.150.191.191';
+// const CONNECTOR_IP = th;
+// const CONNECTOR_PORT = '3000';
 
 export interface Connector {
   name: string;
@@ -29,7 +30,10 @@ export interface Endpoint {
 
 @Injectable()
 export class RegistrationService implements OnApplicationBootstrap {
-  constructor(private http: HttpService) {}
+  constructor(
+    private http: HttpService,
+    private configService: ConfigService,
+  ) {}
 
   onApplicationBootstrap(): any {
     this.register().subscribe((data) => {
@@ -40,23 +44,27 @@ export class RegistrationService implements OnApplicationBootstrap {
   register() {
     const configEndpoint: Endpoint = {
       name: 'config',
-      address: CONNECTOR_IP,
-      port: CONNECTOR_PORT,
+      address: this.configService.get<string>('ipAddress'),
+      port: this.configService.get<string>('port'),
       path: '/config',
     };
 
     const infoEndpoint: Endpoint = {
       name: 'info',
-      address: CONNECTOR_IP,
-      port: CONNECTOR_PORT,
+      address: this.configService.get<string>('ipAddress'),
+      port: this.configService.get<string>('port'),
       path: '/info',
     };
 
     const connector: Connector = {
-      base_url: CONNECTOR_URL,
+      base_url:
+        'http://' +
+        this.configService.get<string>('ipAddress') +
+        ':' +
+        this.configService.get<string>('port'),
       description: 'Fortis Demo Connector',
       endpoints: [configEndpoint, infoEndpoint],
-      name: 'fortis-connector-' + Date.now(),
+      name: this.configService.get<string>('name') + Date.now(),
       version: '1.0',
     };
     // console.log(connector);

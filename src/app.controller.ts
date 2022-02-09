@@ -41,7 +41,12 @@ export class AppController {
   getInfo(): Data {
     // return this.appService.getInfo();
     return {
-      url: this.configService.get<string>('url') + '/transactions',
+      url:
+        'http://' +
+        this.configService.get<string>('ipAddress') +
+        ':' +
+        this.configService.get<string>('port') +
+        '/transactions',
     };
   }
 

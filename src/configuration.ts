@@ -5,5 +5,6 @@ export const configuration = () => ({
   displayName: process.env.DISPLAY_NAME,
   company: process.env.COMPANY,
   version: process.env.VERSION,
-  url: process.env.URL,
+  ipAddress: process.env.IP_ADDRESS,
+  port: process.env.PORT,
 });
