@@ -40,13 +40,16 @@ export class AppController {
   @Get('info')
   getInfo(): Data {
     // return this.appService.getInfo();
+    // return {
+    //   url:
+    //     'http://' +
+    //     this.configService.get<string>('ipAddress') +
+    //     ':' +
+    //     this.configService.get<string>('port') +
+    //     '/transactions',
+    // };
     return {
-      url:
-        'http://' +
-        this.configService.get<string>('ipAddress') +
-        ':' +
-        this.configService.get<string>('port') +
-        '/transactions',
+      url: 'http://goboomtown.com',
     };
   }
 
