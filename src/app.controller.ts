@@ -1,14 +1,27 @@
 import { Controller, Get, Post, Response, Body } from '@nestjs/common';
 import { AppService, Identity, Data, Customer } from './app.service';
-
+import { ConfigService } from '@nestjs/config';
 
 @Controller()
 export class AppController {
-  constructor(private readonly appService: AppService) {}
+  constructor(
+    private readonly appService: AppService,
+    private configService: ConfigService,
+  ) {}
 
   @Get()
   getIdentity(): Identity {
-    return this.appService.getIdentity();
+    // return this.appService.getIdentity();
+    return {
+      name: this.configService.get<string>('name'),
+      displayName: this.configService.get<string>('displayName'),
+      version: this.configService.get<string>('version'),
+      company: this.configService.get<string>('company'),
+      icon: this.configService.get<string>('icon'),
+      url: this.configService.get<string>('url'),
+      hasConfig: true,
+      hasInfo: true,
+    };
   }
 
   @Post()
@@ -25,7 +38,10 @@ export class AppController {
 
   @Get('info')
   getInfo(): Data {
-    return this.appService.getInfo();
+    // return this.appService.getInfo();
+    return {
+      url: this.configService.get<string>('url') + '/transactions',
+    };
   }
 
   @Get('transactions')

@@ -21,6 +21,7 @@ export interface Identity {
   version: string;
   company: string;
   icon: string;
+  url: string;
   hasConfig: boolean;
   hasInfo: boolean;
 }
@@ -36,17 +37,17 @@ export interface Hello {
 @Injectable()
 export class AppService {
   private customer: Customer;
-  getIdentity(): Identity {
-    return {
-      name: IDENTITY,
-      displayName: DISPLAY_NAME,
-      version: VERSION,
-      company: COMPANY,
-      icon: ICON,
-      hasConfig: true,
-      hasInfo: true,
-    };
-  }
+  // getIdentity(): Identity {
+  //   return {
+  //     name: IDENTITY,
+  //     displayName: DISPLAY_NAME,
+  //     version: VERSION,
+  //     company: COMPANY,
+  //     icon: ICON,
+  //     hasConfig: true,
+  //     hasInfo: true,
+  //   };
+  // }
 
   getConfig(): Data {
     return {
