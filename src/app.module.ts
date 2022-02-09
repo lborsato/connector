@@ -13,7 +13,7 @@ import { configuration } from './configuration'; // this is new
     //   rootPath: join(__dirname, '..', 'public'),
     // }),
     ConfigModule.forRoot({
-      envFilePath: `${process.cwd()}/.env.example`,
+      envFilePath: `${process.cwd()}/.env`,
       load: [configuration],
     }),
     HttpModule,
