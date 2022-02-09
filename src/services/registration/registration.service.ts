@@ -62,7 +62,7 @@ export class RegistrationService implements OnApplicationBootstrap {
         this.configService.get<string>('ipAddress') +
         ':' +
         this.configService.get<string>('port'),
-      description: 'Fortis Demo Connector',
+      description: this.configService.get<string>('displayName'),
       endpoints: [configEndpoint, infoEndpoint],
       name: this.configService.get<string>('name') + Date.now(),
       version: '1.0',
