@@ -32,24 +32,27 @@ export class AppController {
     return customer;
   }
 
-  @Get('config')
-  getConfig(): Data {
-    return this.appService.getConfig();
-  }
-
   @Get('info')
   getInfo(): Data {
-    // return this.appService.getInfo();
-    // return {
-    //   url:
-    //     'http://' +
-    //     this.configService.get<string>('ipAddress') +
-    //     ':' +
-    //     this.configService.get<string>('port') +
-    //     '/transactions',
-    // };
     return {
-      url: 'http://goboomtown.com',
+      url:
+        'http://' +
+        this.configService.get<string>('ipAddress') +
+        ':' +
+        this.configService.get<string>('port') +
+        '/transactions',
+    };
+  }
+
+  @Get('config')
+  getConfig(): Data {
+    return {
+      url:
+        'http://' +
+        this.configService.get<string>('ipAddress') +
+        ':' +
+        this.configService.get<string>('port') +
+        '/form',
     };
   }
 
@@ -57,5 +60,11 @@ export class AppController {
   htmlResponse(@Response() res) {
     res.set('Content-Type', 'text/html');
     res.send(this.appService.getTransactions());
+  }
+
+  @Get('form')
+  getForm(@Response() res) {
+    res.set('Content-Type', 'text/html');
+    res.send(this.appService.getForm());
   }
 }

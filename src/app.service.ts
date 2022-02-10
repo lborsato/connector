@@ -1,15 +1,5 @@
 import { Injectable } from '@nestjs/common';
 
-const IDENTITY = 'Fortis';
-const DISPLAY_NAME = 'Fortis Connector';
-const ICON = 'Fortis';
-const VERSION = '1.0.0';
-const COMPANY = 'alchemii';
-const DEMO_URL = 'https://fiddle.sencha.com';
-const HELLO_URL =
-  'http://microservice.local-dev.goboomtown.com:3000/helloworld.html';
-const TRANSACTIONS_URL = 'http://34.150.191.191:3000/transactions';
-
 export class Customer {
   id: string;
   name: string;
@@ -37,33 +27,6 @@ export interface Hello {
 @Injectable()
 export class AppService {
   private customer: Customer;
-  // getIdentity(): Identity {
-  //   return {
-  //     name: IDENTITY,
-  //     displayName: DISPLAY_NAME,
-  //     version: VERSION,
-  //     company: COMPANY,
-  //     icon: ICON,
-  //     hasConfig: true,
-  //     hasInfo: true,
-  //   };
-  // }
-
-  getConfig(): Data {
-    return {
-      url: DEMO_URL,
-    };
-  }
-
-  getInfo(): Data {
-    return {
-      url: TRANSACTIONS_URL,
-    };
-  }
-
-  getHello(): string {
-    return 'Hello World!';
-  }
 
   setCustomer(customer: Customer): void {
     console.log('Customer: ', customer);
@@ -79,6 +42,17 @@ export class AppService {
     html += '<tr><th>01/21/2022</th><th>Ralphs</th><th>$101.22</th></tr>';
     html += '<tr><th>01/19/2022</th><th>Best Buy</th><th>$722.22</th></tr>';
     html += '</table>';
+    return html;
+  }
+
+  getForm(): string {
+    let html = '<h2>Sample Form</h2>';
+    html += '<form>';
+    html += '<label for="name">Name:</label>';
+    html += '<input type="text" id="name" name="name" value="John Smith">';
+    html += '<br>';
+    html += '<label for="email">Email:</label>';
+    html += '<input type="text" id="email" name="email" value="">';
     return html;
   }
 }
