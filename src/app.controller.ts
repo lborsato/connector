@@ -44,18 +44,11 @@ export class AppController {
       ':' +
       this.configService.get<string>('port') +
       '/transactions';
-    let query = '';
-    if (request.params[OBJECT]) {
-      query += 'object' + request.params[OBJECT];
-    }
-    if (request.params[OBJECT_ID]) {
-      if (query.length > 0) {
-        query += '&';
-      }
-      query += OBJECT_ID + request.params[OBJECT_ID];
-    }
-    if (query.length > 0) {
-      url += '?' + query;
+    const object = request.query[OBJECT] as string;
+    const object_id = request.query[OBJECT_ID] as string;
+    if (object != undefined && object_id != undefined) {
+      const query = '?object=' + object + '&object_id=' + object_id;
+      url += query;
     }
     return {
       url: url,
