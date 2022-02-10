@@ -37,7 +37,7 @@ export class AppController {
   }
 
   @Get('info')
-  getInfo(@Request() request): Data {
+  getInfo(@Req() request: Request): Data {
     let url =
       'http://' +
       this.configService.get<string>('ipAddress') +
