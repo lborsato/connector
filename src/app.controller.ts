@@ -76,14 +76,11 @@ export class AppController {
 
   @Get('transactions')
   getTransactions(@Req() request: Request, @Res() response: Response) {
-    console.log(request);
+    console.log(request.query);
+    const object = request.query[OBJECT];
+    const object_id = request.query[OBJECT_ID];
     response.set('Content-Type', 'text/html');
-    response.send(
-      this.appService.getTransactions(
-        request.params[OBJECT],
-        request.params[OBJECT_ID],
-      ),
-    );
+    response.send(this.appService.getTransactions(object, object_id));
   }
 
   @Get('form')

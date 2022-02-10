@@ -33,7 +33,10 @@ export class AppService {
     this.customer = customer;
   }
 
-  getTransactions(object: string, object_id: string): string {
+  getTransactions(
+    object: string | string[] | undefined,
+    object_id: string | string[] | undefined,
+  ): string {
     // let html = '<h2>Last Three Transactions for ' + this.customer.id + ':</h2>';
     console.log('object: ', object);
     let html = '<h2>Last Three Transactions for ${object} ${objectid}:</h2>';
