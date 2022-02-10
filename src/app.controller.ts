@@ -3,7 +3,7 @@ import { AppService, Identity, Data, Customer } from './app.service';
 import { ConfigService } from '@nestjs/config';
 
 const OBJECT = 'object';
-const OBJECT_ID = 'objectId';
+const OBJECT_ID = 'object_id';
 
 @Controller()
 export class AppController {
@@ -74,14 +74,19 @@ export class AppController {
   }
 
   @Get('transactions')
-  getTransactions(@Request() req, @Response() res) {
-    res.set('Content-Type', 'text/html');
-    res.send(this.appService.getTransactions(request.params[OBJECT], request.params[OBJECTID]));
+  getTransactions(@Request() request, @Response() response) {
+    response.set('Content-Type', 'text/html');
+    response.send(
+      this.appService.getTransactions(
+        request.params[OBJECT],
+        request.params[OBJECT_ID],
+      ),
+    );
   }
 
   @Get('form')
-  getForm(@Response() res) {
-    res.set('Content-Type', 'text/html');
-    res.send(this.appService.getForm());
+  getForm(@Response() response) {
+    response.set('Content-Type', 'text/html');
+    response.send(this.appService.getForm());
   }
 }
