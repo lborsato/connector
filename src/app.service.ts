@@ -29,7 +29,6 @@ export class AppService {
   private customer: Customer;
 
   setCustomer(customer: Customer): void {
-    console.log('Customer: ', customer);
     this.customer = customer;
   }
 
@@ -38,7 +37,6 @@ export class AppService {
     object_id: string | string[] | undefined,
   ): string {
     // let html = '<h2>Last Three Transactions for ' + this.customer.id + ':</h2>';
-    console.log('object: ', object);
     let html = '';
     if (object != undefined && object_id != undefined) {
       html +=

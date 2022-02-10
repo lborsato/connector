@@ -15,8 +15,6 @@ export class AppController {
 
   @Get()
   getIdentity(): Identity {
-    // return this.appService.getIdentity();
-    console.log(this.configService.get('name'));
     return {
       name: this.configService.get<string>('name'),
       displayName: this.configService.get<string>('displayName'),
@@ -31,7 +29,6 @@ export class AppController {
 
   @Post()
   setCustomer(@Body() customer: Customer) {
-    console.log(customer);
     this.appService.setCustomer(customer);
     return customer;
   }
