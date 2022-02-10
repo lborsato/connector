@@ -1,4 +1,5 @@
 import { Injectable } from '@nestjs/common';
+import * as QueryString from 'querystring';
 
 export class Customer {
   id: string;
@@ -34,8 +35,8 @@ export class AppService {
   }
 
   getTransactions(
-    object: string | string[] | undefined,
-    object_id: string | string[] | undefined,
+      object: string | string[] | undefined,
+      object_id: string | string[] | undefined,
   ): string {
     // let html = '<h2>Last Three Transactions for ' + this.customer.id + ':</h2>';
     console.log('object: ', object);
