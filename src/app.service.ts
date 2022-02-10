@@ -35,6 +35,7 @@ export class AppService {
 
   getTransactions(object: string, object_id: string): string {
     // let html = '<h2>Last Three Transactions for ' + this.customer.id + ':</h2>';
+    console.log('object: ', object);
     let html = '<h2>Last Three Transactions for ${object} ${objectid}:</h2>';
     html += '<table width="100%">';
     html += '<tr><th>Date</th><th>Description</th><th>Amount</th></tr>';
