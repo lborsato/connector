@@ -1,6 +1,9 @@
-import { Controller, Get, Post, Response, Body } from '@nestjs/common';
+import { Controller, Get, Post, Request, Response, Body } from '@nestjs/common';
 import { AppService, Identity, Data, Customer } from './app.service';
 import { ConfigService } from '@nestjs/config';
+
+const OBJECT = 'object';
+const OBJECT_ID = 'objectId';
 
 @Controller()
 export class AppController {
@@ -33,14 +36,28 @@ export class AppController {
   }
 
   @Get('info')
-  getInfo(): Data {
+  getInfo(@Request() request): Data {
+    let url =
+      'http://' +
+      this.configService.get<string>('ipAddress') +
+      ':' +
+      this.configService.get<string>('port') +
+      '/transactions';
+    let query = '';
+    if (request.params[OBJECT]) {
+      query += 'object' + request.params[OBJECT];
+    }
+    if (request.params[OBJECT_ID]) {
+      if (query.length > 0) {
+        query += '&';
+      }
+      query += OBJECT_ID + request.params[OBJECT_ID];
+    }
+    if (query.length > 0) {
+      url += '?' + query;
+    }
     return {
-      url:
-        'http://' +
-        this.configService.get<string>('ipAddress') +
-        ':' +
-        this.configService.get<string>('port') +
-        '/transactions',
+      url: url,
     };
   }
 
@@ -57,9 +74,9 @@ export class AppController {
   }
 
   @Get('transactions')
-  htmlResponse(@Response() res) {
+  getTransactions(@Request() req, @Response() res) {
     res.set('Content-Type', 'text/html');
-    res.send(this.appService.getTransactions());
+    res.send(this.appService.getTransactions(request.params[OBJECT], request.params[OBJECTID]));
   }
 
   @Get('form')
