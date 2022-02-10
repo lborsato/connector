@@ -1,5 +1,4 @@
 import { Injectable } from '@nestjs/common';
-import * as QueryString from 'querystring';
 
 export class Customer {
   id: string;
@@ -53,9 +52,9 @@ export class AppService {
     }
     html += '<table width="100%">';
     html += '<tr><th>Date</th><th>Description</th><th>Amount</th></tr>';
-    html += '<tr><th>' + Date().toLocaleUpperCase("en-US") + '</th><th>Nespresso</th><th>$25.88</th></tr>';
-    html += '<tr><th>' + Date().toLocaleUpperCase("en-US") + '</th><th>Ralphs</th><th>$101.22</th></tr>';
-    html += '<tr><th>' + Date().toLocaleUpperCase("en-US") + '</th><th>Best Buy</th><th>$722.22</th></tr>';
+    html += '<tr><th>' + Date.now() + '</th><th>Nespresso</th><th>$25.88</th></tr>';
+    html += '<tr><th>' + Date.now() + '</th><th>Ralphs</th><th>$101.22</th></tr>';
+    html += '<tr><th>' + Date.now() + '</th><th>Best Buy</th><th>$722.22</th></tr>';
     html += '</table>';
     return html;
   }
