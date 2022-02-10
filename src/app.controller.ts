@@ -1,6 +1,7 @@
-import { Controller, Get, Post, Request, Response, Body } from '@nestjs/common';
+import { Controller, Get, Post, Req, Res, Body } from '@nestjs/common';
 import { AppService, Identity, Data, Customer } from './app.service';
 import { ConfigService } from '@nestjs/config';
+import { Request, Response } from 'express';
 
 const OBJECT = 'object';
 const OBJECT_ID = 'object_id';
@@ -74,7 +75,7 @@ export class AppController {
   }
 
   @Get('transactions')
-  getTransactions(@Request() request, @Response() response) {
+  getTransactions(@Req() request: Request, @Res() response: Response) {
     console.log(request.params);
     response.set('Content-Type', 'text/html');
     response.send(
@@ -86,7 +87,7 @@ export class AppController {
   }
 
   @Get('form')
-  getForm(@Response() response) {
+  getForm(@Res() response: Response) {
     response.set('Content-Type', 'text/html');
     response.send(this.appService.getForm());
   }
