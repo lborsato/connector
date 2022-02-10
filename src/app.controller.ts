@@ -75,6 +75,7 @@ export class AppController {
 
   @Get('transactions')
   getTransactions(@Request() request, @Response() response) {
+    console.log(request);
     response.set('Content-Type', 'text/html');
     response.send(
       this.appService.getTransactions(
