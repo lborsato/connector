@@ -76,7 +76,6 @@ export class AppController {
 
   @Get('transactions')
   getTransactions(@Req() request: Request, @Res() response: Response) {
-    console.log(request.query);
     const object = request.query[OBJECT] as string;
     const object_id = request.query[OBJECT_ID] as string;
     response.set('Content-Type', 'text/html');
