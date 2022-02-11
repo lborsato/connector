@@ -53,15 +53,16 @@ export class AppController {
   }
 
   @Get('config')
-  getConfig(): Data {
-    return {
-      url:
-        'http://' +
-        this.configService.get<string>('ipAddress') +
-        ':' +
-        this.configService.get<string>('port') +
-        '/form',
-    };
+  getConfig() {
+    return {};
+    // return {
+    //   url:
+    //       'http://' +
+    //       this.configService.get<string>('ipAddress') +
+    //       ':' +
+    //       this.configService.get<string>('port') +
+    //       '/form',
+    // };
   }
 
   @Get('transactions')

@@ -20,6 +20,7 @@ export interface Data {
   url: string;
 }
 
+
 export interface Hello {
   msg: string;
 }
