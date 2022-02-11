@@ -64,7 +64,7 @@ export class RegistrationService implements OnApplicationBootstrap {
         this.configService.get<string>('port'),
       description: this.configService.get<string>('displayName'),
       endpoints: [configEndpoint, infoEndpoint],
-      name: this.configService.get<string>('name') + Date.now(),
+      name: this.configService.get<string>('name') + '-' + Date.now(),
       version: '1.0',
     };
     // console.log(connector);
