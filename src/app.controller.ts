@@ -1,7 +1,9 @@
 import { Controller, Get, Post, Req, Res, Body } from '@nestjs/common';
-import { AppService, Identity, Data, Customer } from './app.service';
+import { AppService } from './app.service';
+import { Identity } from './interfaces/identity.interface';
 import { ConfigService } from '@nestjs/config';
 import { Request, Response } from 'express';
+import { Data } from './interfaces/data.interface';
 
 const ORG = 'org';
 const OBJECT = 'object';
@@ -11,27 +13,21 @@ const OBJECT_ID = 'object_id';
 export class AppController {
   constructor(
     private readonly appService: AppService,
-    private configService: ConfigService,
+    private config: ConfigService,
   ) {}
 
   @Get()
   getIdentity(): Identity {
     return {
-      name: this.configService.get<string>('name'),
-      displayName: this.configService.get<string>('displayName'),
-      version: this.configService.get<string>('version'),
-      company: this.configService.get<string>('company'),
-      icon: this.configService.get<string>('icon'),
-      url: this.configService.get<string>('url'),
+      name: this.config.get<string>('name'),
+      displayName: this.config.get<string>('displayName'),
+      version: this.config.get<string>('version'),
+      company: this.config.get<string>('company'),
+      icon: this.config.get<string>('icon'),
+      url: this.config.get<string>('url'),
       hasConfig: true,
       hasInfo: true,
     };
-  }
-
-  @Post()
-  setCustomer(@Body() customer: Customer) {
-    this.appService.setCustomer(customer);
-    return customer;
   }
 
   @Get('info')
@@ -39,18 +35,6 @@ export class AppController {
     let orginalUrl = request.originalUrl;
     orginalUrl = orginalUrl.replace('/info', '/transactions');
     const url = request.protocol + '://' + request.get('host') + orginalUrl;
-    // let url =
-    //   'http://' +
-    //   this.configService.get<string>('ipAddress') +
-    //   ':' +
-    //   this.configService.get<string>('port') +
-    //   '/transactions';
-    // const object = request.query[OBJECT] as string;
-    // const object_id = request.query[OBJECT_ID] as string;
-    // if (object != undefined && object_id != undefined) {
-    //   const query = '?object=' + object + '&object_id=' + object_id;
-    //   url += query;
-    // }
     return {
       url: url,
     };

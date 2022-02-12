@@ -1,29 +1,5 @@
 import { Injectable } from '@nestjs/common';
-
-export class Customer {
-  id: string;
-  name: string;
-}
-
-export interface Identity {
-  name: string;
-  displayName: string;
-  version: string;
-  company: string;
-  icon: string;
-  url: string;
-  hasConfig: boolean;
-  hasInfo: boolean;
-}
-
-export interface Data {
-  url: string;
-}
-
-
-export interface Hello {
-  msg: string;
-}
+import { Customer } from './interfaces/customer.interface';
 
 @Injectable()
 export class AppService {
