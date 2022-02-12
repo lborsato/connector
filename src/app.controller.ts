@@ -4,7 +4,6 @@ import { Identity } from './interfaces/identity.interface';
 import { ConfigService } from '@nestjs/config';
 import { Request, Response } from 'express';
 import { Data } from './interfaces/data.interface';
-import * as fs from "fs";
 
 const ORG = 'org';
 const OBJECT = 'object';
@@ -24,7 +23,7 @@ export class AppController {
       displayName: this.config.get<string>('displayName'),
       version: this.config.get<string>('version'),
       company: this.config.get<string>('company'),
-      icon: this.config.get<string>('icon'),
+      icon: this.config.get<string>('url') + '/icon',
       url: this.config.get<string>('url'),
       hasConfig: true,
       hasInfo: true,
@@ -33,12 +32,6 @@ export class AppController {
 
   @Get('icon')
   get(@Res() response: Response) {
-    // console.log(process.cwd());
-    // fs.readdir('./public', (err, files) => {
-    //   files.forEach( file => {
-    //     console.log(file);
-    //   });
-    // });
     response.set('Content-Type', 'image/png');
     response.sendFile('icon.png', { root: './public' });
   }
