@@ -3,6 +3,7 @@ import { AppService, Identity, Data, Customer } from './app.service';
 import { ConfigService } from '@nestjs/config';
 import { Request, Response } from 'express';
 
+const ORG = 'org';
 const OBJECT = 'object';
 const OBJECT_ID = 'object_id';
 
@@ -35,6 +36,7 @@ export class AppController {
 
   @Get('info')
   getInfo(@Req() request: Request): Data {
+    console.log(request);
     let url =
       'http://' +
       this.configService.get<string>('ipAddress') +
