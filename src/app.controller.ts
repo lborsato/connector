@@ -32,6 +32,7 @@ export class AppController {
 
   @Get('icon')
   get(@Res() response: Response) {
+    console.log(process.cwd());
     response.set('Content-Type', 'image/png');
     response.sendFile('icon.png', { root: '..' });
   }
