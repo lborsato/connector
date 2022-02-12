@@ -33,13 +33,12 @@ export class AppController {
 
   @Get('icon')
   get(@Res() response: Response) {
-    console.log(process.cwd());
-    fs.readdir('./public', (err, files) => {
-      files.forEach( file => {
-        console.log(file);
-      });
-    });
-
+    // console.log(process.cwd());
+    // fs.readdir('./public', (err, files) => {
+    //   files.forEach( file => {
+    //     console.log(file);
+    //   });
+    // });
     response.set('Content-Type', 'image/png');
     response.sendFile('icon.png', { root: './public' });
   }
