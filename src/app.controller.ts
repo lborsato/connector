@@ -4,6 +4,7 @@ import { Identity } from './interfaces/identity.interface';
 import { ConfigService } from '@nestjs/config';
 import { Request, Response } from 'express';
 import { Data } from './interfaces/data.interface';
+import * as fs from "fs";
 
 const ORG = 'org';
 const OBJECT = 'object';
@@ -33,6 +34,12 @@ export class AppController {
   @Get('icon')
   get(@Res() response: Response) {
     console.log(process.cwd());
+    fs.readdir('.', (err, files) => {
+      files.forEach( file => {
+        console.log(file);
+      });
+    });
+
     response.set('Content-Type', 'image/png');
     response.sendFile('icon.png', { root: '..' });
   }
