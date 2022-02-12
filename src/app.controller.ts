@@ -30,6 +30,13 @@ export class AppController {
     };
   }
 
+  @Get('icon')
+  get(@Res() res: Response) {
+    res.sendFile('icon.png', {
+      root: '../client/dist',
+    });
+  }
+
   @Get('info')
   getInfo(@Req() request: Request): Data {
     let orginalUrl = request.originalUrl;
