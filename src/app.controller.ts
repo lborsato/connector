@@ -31,9 +31,11 @@ export class AppController {
   }
 
   @Get('icon')
-  get(@Res() res: Response) {
-    res.sendFile('icon.png', {
-      root: '../client/dist',
+  get(@Res() response: Response) {
+    response.set('Content-Type', 'text/html');
+
+    response.sendFile('icon.png', {
+      root: '../dist',
     });
   }
 
