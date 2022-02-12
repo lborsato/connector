@@ -35,7 +35,7 @@ export class AppController {
     response.set('Content-Type', 'text/html');
 
     response.sendFile('icon.png', {
-      root: '../dist',
+      root: '../../public',
     });
   }
 
