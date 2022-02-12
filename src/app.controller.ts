@@ -36,21 +36,21 @@ export class AppController {
 
   @Get('info')
   getInfo(@Req() request: Request): Data {
-    console.log(request);
-    let x = request.protocol + '://' + request.get('host') + request.query.toString();
-    console.log(x);
-    let url =
-      'http://' +
-      this.configService.get<string>('ipAddress') +
-      ':' +
-      this.configService.get<string>('port') +
-      '/transactions';
-    const object = request.query[OBJECT] as string;
-    const object_id = request.query[OBJECT_ID] as string;
-    if (object != undefined && object_id != undefined) {
-      const query = '?object=' + object + '&object_id=' + object_id;
-      url += query;
-    }
+    let orginalUrl = request.originalUrl;
+    orginalUrl = orginalUrl.replace('/info', '/transactions');
+    const url = request.protocol + '://' + request.get('host') + orginalUrl;
+    // let url =
+    //   'http://' +
+    //   this.configService.get<string>('ipAddress') +
+    //   ':' +
+    //   this.configService.get<string>('port') +
+    //   '/transactions';
+    // const object = request.query[OBJECT] as string;
+    // const object_id = request.query[OBJECT_ID] as string;
+    // if (object != undefined && object_id != undefined) {
+    //   const query = '?object=' + object + '&object_id=' + object_id;
+    //   url += query;
+    // }
     return {
       url: url,
     };
