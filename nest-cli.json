@@ -1,5 +1,14 @@
 {
   "collection": "@nestjs/schematics",
   "sourceRoot": "src",
-  "assets": [{"include": "../*.env", "outDir": "./dist/"}]
+  "assets": [
+    {
+      "include": "../*.env",
+      "outDir": "./dist/"
+    },
+    {
+      "include": "../public/*.png",
+      "outDir": ".dist/"
+    }
+  ]
 }
