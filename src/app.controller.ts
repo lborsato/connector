@@ -30,6 +30,11 @@ export class AppController {
     };
   }
 
+  @Get('env')
+  getEnv(): string {
+    return JSON.stringify(process.env);
+  }
+
   @Get('icon')
   get(@Res() response: Response) {
     response.set('Content-Type', 'image/png');
