@@ -103,7 +103,7 @@ export class AppController {
     };
 
     return this.http
-      .get(baseUrl + '/hostname', {
+      .get(baseUrl + '/instance/hostname', {
         headers: headersRequest,
       })
       .pipe(map((response) => response.data));
