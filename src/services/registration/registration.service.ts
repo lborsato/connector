@@ -16,10 +16,6 @@ export class RegistrationService implements OnApplicationBootstrap {
     this.register().subscribe((data) => {
       console.log(data);
     });
-    this.getMetadata().subscribe((data) => {
-      console.log(data);
-    });
-
   }
 
   register() {
@@ -52,20 +48,6 @@ export class RegistrationService implements OnApplicationBootstrap {
     };
     return this.http
       .post(this.config.get<string>('registrationUrl'), connector)
-      .pipe(map((response) => response.data));
-  }
-
-  getMetadata() {
-    const baseUrl = 'http://metadata.google.internal/computeMetadata/v1';
-    const headersRequest = {
-      'Content-Type': 'application/json', // afaik this one is not needed
-      'Metadata-Flavor': 'Google',
-    };
-
-    return this.http
-      .get(baseUrl + '/hostname', {
-        headers: headersRequest,
-      })
       .pipe(map((response) => response.data));
   }
 }

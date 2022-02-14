@@ -1,9 +1,18 @@
-import { Controller, Get, Post, Req, Res, Body } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Req,
+  Res,
+  Body,
+  HttpService,
+} from '@nestjs/common';
 import { AppService } from './app.service';
 import { Identity } from './interfaces/identity.interface';
 import { ConfigService } from '@nestjs/config';
 import { Request, Response } from 'express';
 import { Data } from './interfaces/data.interface';
+import { map } from 'rxjs/operators';
 
 const ORG = 'org';
 const OBJECT = 'object';
@@ -14,6 +23,7 @@ export class AppController {
   constructor(
     private readonly appService: AppService,
     private config: ConfigService,
+    private http: HttpService,
   ) {}
 
   @Get()
@@ -76,5 +86,26 @@ export class AppController {
   getForm(@Res() response: Response) {
     response.set('Content-Type', 'text/html');
     response.send(this.appService.getForm());
+  }
+
+  @Get('metadata')
+  getMetadata(@Res() response: Response) {
+    this.metadata().subscribe((data) => {
+      response.set('Content-Type', 'application/json');
+      response.send(data);
+    });
+  }
+
+  metadata() {
+    const baseUrl = 'http://metadata.google.internal/computeMetadata/v1';
+    const headersRequest = {
+      'Metadata-Flavor': 'Google',
+    };
+
+    return this.http
+      .get(baseUrl + '/hostname', {
+        headers: headersRequest,
+      })
+      .pipe(map((response) => response.data));
   }
 }

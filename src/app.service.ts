@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { Customer } from './interfaces/customer.interface';
+import {map} from "rxjs/operators";
 
 @Injectable()
 export class AppService {
