@@ -12,11 +12,15 @@ import { configuration } from './configuration'; // this is new
     // ServeStaticModule.forRoot({
     //   rootPath: join(__dirname, '..', 'public'),
     // }),
+
     ConfigModule.forRoot({
       envFilePath: `${process.cwd()}/.env`,
       load: [configuration],
     }),
-    HttpModule,
+    HttpModule.register({
+      timeout: 30000,
+      maxRedirects: 5,
+    }),
   ],
   controllers: [AppController],
   providers: [AppService, RegistrationService],
