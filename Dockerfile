@@ -10,6 +10,8 @@ RUN npm install --only=development
 
 RUN npm i --save @nestjs/serve-static
 
+RUN npm install --save @nestjs/swagger swagger-ui-express
+
 COPY . .
 
 RUN npm run build
