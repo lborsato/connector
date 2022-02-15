@@ -12,7 +12,7 @@
     }
   ],
   "compilerOptions": {
-    "plugins": ["@nestjs/swagger"]
+    "plugins": ["@nestjs/swagger/plugin"]
   }
 
 }
