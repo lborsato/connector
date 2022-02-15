@@ -10,9 +10,5 @@
       "include": "../public/*.png",
       "outDir": ".dist/"
     }
-  ],
-  "compilerOptions": {
-    "plugins": ["@nestjs/swagger/plugin"]
-  }
-
+  ]
 }
