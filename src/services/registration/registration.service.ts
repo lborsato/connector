@@ -13,9 +13,9 @@ export class RegistrationService implements OnApplicationBootstrap {
   constructor(private http: HttpService, private config: ConfigService) {}
 
   onApplicationBootstrap(): any {
-    this.register().subscribe((data) => {
-      console.log(data);
-    });
+    // this.register().subscribe((data) => {
+    //   console.log(data);
+    // });
   }
 
   register() {
