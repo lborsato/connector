@@ -10,6 +10,10 @@ export const configuration = () => ({
   ipAddress: process.env.IP_ADDRESS ?? os.networkInterfaces().en0[1].address,
   hostname: os.hostname(),
   port: process.env.PORT,
-  url: 'http://' + process.env.IP_ADDRESS + ':' + process.env.PORT,
+  url:
+    'http://' +
+    (process.env.IP_ADDRESS ?? os.networkInterfaces().en0[1].address) +
+    ':' +
+    process.env.PORT,
   registrationUrl: process.env.REGISTRATION_URL,
 });
