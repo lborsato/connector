@@ -91,6 +91,11 @@ export class AppController {
   @Get('metadata')
   getMetadata(@Req() request: Request, @Res() response: Response) {
     console.log(request);
+    const data = {
+      'Metadata-Flavor': 'Google',
+    };
+    response.set('Content-Type', 'application/json');
+    response.send(data);
     // this.metadata().subscribe((data) => {
     //   response.set('Content-Type', 'application/json');
     //   response.send(data);
