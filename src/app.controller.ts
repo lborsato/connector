@@ -13,11 +13,19 @@ import { ConfigService } from '@nestjs/config';
 import { Request, Response } from 'express';
 import { Data } from './interfaces/data.interface';
 import { map } from 'rxjs/operators';
+import {
+  ApiBearerAuth,
+  ApiOperation,
+  ApiResponse,
+  ApiTags,
+} from '@nestjs/swagger';
 
 const ORG = 'org';
 const OBJECT = 'object';
 const OBJECT_ID = 'object_id';
 
+@ApiBearerAuth()
+@ApiTags('connector')
 @Controller()
 export class AppController {
   constructor(
@@ -27,6 +35,11 @@ export class AppController {
   ) {}
 
   @Get()
+  @ApiOperation({ summary: 'Get connector identity' })
+  @ApiResponse({
+    status: 200,
+    description: 'The identity',
+  })
   getIdentity(): Identity {
     return {
       name: this.config.get<string>('name'),
@@ -52,6 +65,11 @@ export class AppController {
   }
 
   @Get('info')
+  @ApiOperation({ summary: 'Get connector information iframe' })
+  @ApiResponse({
+    status: 200,
+    description: 'The information iframe url',
+  })
   getInfo(@Req() request: Request): Data {
     let orginalUrl = request.originalUrl;
     orginalUrl = orginalUrl.replace('/info', '/transactions');
@@ -62,6 +80,11 @@ export class AppController {
   }
 
   @Get('config')
+  @ApiOperation({ summary: 'Get connector configuraton iframe' })
+  @ApiResponse({
+    status: 200,
+    description: 'The configuraton iframe url',
+  })
   getConfig() {
     return {};
     // return {
