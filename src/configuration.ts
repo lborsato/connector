@@ -7,7 +7,7 @@ export const configuration = () => ({
   displayName: process.env.DISPLAY_NAME,
   company: process.env.COMPANY,
   version: process.env.VERSION,
-  ipAddress: process.env.IP_ADDRESS,
+  ipAddress: process.env.IP_ADDRESS ?? os.networkInterfaces().en0[1].address,
   hostname: os.hostname(),
   port: process.env.PORT,
   url: 'http://' + process.env.IP_ADDRESS + ':' + process.env.PORT,
