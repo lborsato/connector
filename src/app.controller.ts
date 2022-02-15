@@ -92,7 +92,8 @@ export class AppController {
   getMetadata(@Req() request: Request, @Res() response: Response) {
     // console.log(request);
     const data = {
-      url: request.url,
+      originalUrl: request.originalUrl,
+      baseUrl: request.baseUrl,
     };
     response.set('Content-Type', 'application/json');
     response.send(data);
