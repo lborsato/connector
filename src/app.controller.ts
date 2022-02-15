@@ -90,9 +90,9 @@ export class AppController {
 
   @Get('metadata')
   getMetadata(@Req() request: Request, @Res() response: Response) {
-    console.log(request);
+    // console.log(request);
     const data = {
-      'Metadata-Flavor': 'Google',
+      url: request.url,
     };
     response.set('Content-Type', 'application/json');
     response.send(data);
