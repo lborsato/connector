@@ -126,16 +126,16 @@ export class AppController {
     // });
   }
 
-  metadata() {
-    const baseUrl = 'http://metadata.google.internal/computeMetadata/v1';
-    const headersRequest = {
-      'Metadata-Flavor': 'Google',
-    };
-
-    return this.http
-      .get(baseUrl + '/instance/hostname', {
-        headers: headersRequest,
-      })
-      .pipe(map((response) => response.data));
-  }
+  // metadata() {
+  //   const baseUrl = 'http://metadata.google.internal/computeMetadata/v1';
+  //   const headersRequest = {
+  //     'Metadata-Flavor': 'Google',
+  //   };
+  //
+  //   return this.http
+  //     .get(baseUrl + '/instance/hostname', {
+  //       headers: headersRequest,
+  //     })
+  //     .pipe(map((response) => response.data));
+  // }
 }
