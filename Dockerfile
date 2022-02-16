@@ -27,6 +27,10 @@ COPY package*.json ./
 
 RUN npm install --only=production
 
+RUN npm i --save @nestjs/serve-static
+
+RUN npm install --save @nestjs/swagger swagger-ui-express
+
 COPY . .
 
 COPY --from=development /usr/src/app/dist ./dist
